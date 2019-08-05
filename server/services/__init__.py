@@ -1,5 +1,5 @@
 from server import app
 
-def initServices(app):
+def init_services(app):
 	
 	return

@@ -1,13 +1,20 @@
 import os
+import mongoengine as mge
+
 from flask import Flask, abort, session, request, redirect
 from flask.json import jsonify
 
 app = Flask(__name__, template_folder="../public", static_folder="../public", static_url_path='')
+app.config['JSON_AS_ASCII'] = False
+
+mge.connect('doulingo_demo', host='localhost', port=27017)
 
 from server.routes import *
 from server.services import *
+from server.databases import *
 
-initServices(app)
+init_services(app)
+init_databases()
 
 if 'FLASK_LIVE_RELOAD' in os.environ and os.environ['FLASK_LIVE_RELOAD'] == 'true':
 	import livereload

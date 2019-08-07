@@ -47,14 +47,14 @@ Init database
 ```
 python3 -m server.databases.init_databases
 ```
-For unix user:
+Run server:
 ```
 ./run-dev
 ```
 
 ### API Guide
 ```IP_ADDRESS``` is your IP_ADDRESS in your lan. example : ```192.168.1.23``` check by ```ifconfig```, to connect from other device you need to  turn off firewall of server machine and connect to same network ( wifi or lan )
-
+Test server on local machine, you can use ```localhost``` or ```0.0.0.0``` instead.
 #### Home 
 ```
 http://IP_address:3000/

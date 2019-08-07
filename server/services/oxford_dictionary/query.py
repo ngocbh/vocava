@@ -65,7 +65,6 @@ def query(word):
 	return response.text
 
 
-
 def get_word_info(word):
 	word_info = {}
 	res = json.loads(query(word))

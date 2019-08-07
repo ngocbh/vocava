@@ -1,6 +1,8 @@
 from mongoengine import *
 
-class WordDoc(EmbeddedDocument):
+from server.services import oxford_dictionary as od
+
+class Dictionary(Document):
 	#name of word
 	index = StringField(required=True)
 	#default level of word
@@ -13,6 +15,10 @@ class WordDoc(EmbeddedDocument):
 	oxford_result = DictField()
 	#list topics of word
 	topics = DictField()
+	#synonyms of word
+	synonyms = ListField()
+	#antonyms of word
+	antonyms = ListField()
 
 	def to_dict(self):
 		ret = {}
@@ -23,17 +29,15 @@ class WordDoc(EmbeddedDocument):
 		ret.update({'oxford_result': self.oxford_result})
 		return ret
 
-class DictionaryDoc(Document):
-	words = ListField(EmbeddedDocumentField(WordDoc))
+	def update_oxford_result(self):
+		if len(self.oxford_result) != 0:
+			return
+		self.oxford_result = od.get_word_info(self.index)
+		self.save()
 
-	def to_dict(self):
-		ret = []
-		for word in self.words:
-			ret.append(word.to_dict())
-		return ret
 
-class WordDocWrapper(EmbeddedDocument):
-	word = EmbeddedDocumentField(WordDoc)
+class WordWrapper(EmbeddedDocument):
+	word = StringField(required=True)
 	# memorization ability score
 	ma_score = IntField(min_value=0, max_value=100)
 	# number of user search 
@@ -43,13 +47,18 @@ class WordDocWrapper(EmbeddedDocument):
 
 	def to_dict(self):
 		ret = {}
-		ret['word'] = self.word.index
+		ret['word'] = self.word
 		ret['ma_score'] = self.ma_score
 		ret['num_search'] = self.num_search
 		ret['priority'] = self.priority
 		return ret
 
-class UserDoc(Document):
+class Exam(EmbeddedDocument):
+	exam_id = IntField(min_value=0)
+	user_id = IntField(min_value=0)
+	tasks = ListField()
+
+class User(Document):
 	#id of user
 	index = IntField(min_value=0)
 	username = StringField(required=True)
@@ -59,27 +68,32 @@ class UserDoc(Document):
 	last_name = StringField(max_length=50)
 	#current level of user
 	level = IntField(min_value=0, max_value=20)
-	#known word list
-	known_words = ListField(EmbeddedDocumentField(WordDocWrapper))
-	#unknown word list
-	unknown_words = ListField(EmbeddedDocumentField(WordDocWrapper))
-	size_unknown_words = IntField(min_value=0, default=10)
-	new_words_per_exam = IntField(min_value=0, default=6)
-	old_words_per_exam = IntField(min_value=0, default=2)
-	
+	#known words list
+	known_words = ListField(EmbeddedDocumentField(WordWrapper))
+	#unknown words list
+	unknown_words = ListField(EmbeddedDocumentField(WordWrapper))
+	#learning words list
+	learning_words = ListField(EmbeddedDocumentField(WordWrapper))
+	#user parameters
+	size_unknown_words = IntField(min_value=0, default=100)
+	size_learning_words = IntField(min_value=0, default=20)
+	new_words_per_exam = IntField(min_value=0, default=2)
+	learning_words_per_exam = IntField(min_value=0, default=5)
+	#pending exam
+	pending_exam = ListField(EmbeddedDocumentField(Exam))
 	# properties of user, like 'bad-pronunciation',... cai nay de day thoi hien tai ko can lam.
 	properties = DictField()
 	# topics which user usually read
 	topics = DictField()
 
-	def init_level(self, dictionary):
-		for i in range(len(dictionary.words)):
-			word = dictionary.words[i]
+	def init_level(self, words):
+		for i in range(len(words)):
+			word = words[i]
 			if word.level < self.level:
-				self.known_words.append(WordDocWrapper(word=word, ma_score=100, num_search=0, priority=0))
+				self.known_words.append(WordWrapper(word=word.index, ma_score=100, num_search=0, priority=0))
 			elif word.level == self.level:
 				if len(self.unknown_words) < self.size_unknown_words:
-					self.unknown_words.append(WordDocWrapper(word=word, ma_score=0, num_search=0, priority=0))
+					self.unknown_words.append(WordWrapper(word=word.index, ma_score=0, num_search=0, priority=0))
 
 	def to_dict(self):
 		ret = {}
@@ -90,12 +104,12 @@ class UserDoc(Document):
 		ret['first_name'] = self.first_name
 		ret['last_name'] = self.last_name
 		ret['level'] = self.level
-		# ret['known_words'] = [wordw.to_dict() for wordw in self.known_words]
+		ret['learning_words'] = [wordw.to_dict() for wordw in self.learning_words]
 		ret['no_known_words'] = len(self.known_words)
 		ret['unknown_words'] = [wordw.to_dict() for wordw in self.unknown_words]
 		ret['size_unknown_words'] = self.size_unknown_words
 		ret['new_words_per_exam'] = self.new_words_per_exam
-		ret['old_words_per_exam'] = self.old_words_per_exam
+		ret['learning_words_per_exam'] = self.learning_words_per_exam
 		ret['properties'] = self.properties
 		ret['topics'] = self.topics
 		return ret

@@ -9,17 +9,15 @@ from .. services import oxford_dictionary as od
 
 import json
 
-@app.route('/dictionary', methods=['GET'])
+@app.route('/api/dictionary', methods=['GET'])
 def get_dictionary():
-	try:
-		dictionary = DictionaryDoc.objects().get()
-	except Exception:
-		raise Exception('Doesnot have any dictionary on database')
-	return jsonify(dictionary.to_dict())
+	words = Dictionary.objects()
+	dictionary = [word.to_dict() for word in words]
+	return jsonify(dictionary)
 
 
 
-@app.route('/get-oxford-result', methods=['GET', 'POST'])
+@app.route('/api/get-oxford-result', methods=['GET', 'POST'])
 def get_oxford_result():
 	"""
 	uasge: http://0.0.0.0:3000/get-oxford-result?word=example

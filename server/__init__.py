@@ -14,7 +14,7 @@ from server.services import *
 from server.databases import *
 
 init_services(app)
-init_databases()
+# init_databases()
 
 if 'FLASK_LIVE_RELOAD' in os.environ and os.environ['FLASK_LIVE_RELOAD'] == 'true':
 	import livereload

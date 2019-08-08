@@ -35,7 +35,7 @@ brew install mongodb
 
 Start mongodb service
 ```
-brew service start mongodb
+brew services start mongodb
 ```
 
 Install python package:

@@ -33,6 +33,11 @@ Install mongodb, for unix user:
 brew install mongodb
 ```
 
+Start mongodb service
+```
+brew service start mongodb
+```
+
 Install python package:
 ```
 pip3 install -r requirements.txt

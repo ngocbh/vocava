@@ -95,7 +95,6 @@ def generate_pronunciation_task(word_index, bag_of_words=[]):
 
 	return task
 
-
 def generate_sentence_task(word_index, bag_of_words=[]):
 	task = {}
 	word = Dictionary.objects().get(index=word_index)
@@ -123,8 +122,6 @@ def generate_sentence_task(word_index, bag_of_words=[]):
 
 	return task
 
-
-
 def generate_puzzle_task(word_index):
 	task = {}
 	word = Dictionary.objects().get(index=word_index)
@@ -136,7 +133,7 @@ def generate_puzzle_task(word_index):
 	try: 
 		task['question'] = word.oxford_result['entries'][0]['pronunciations']['audioFile']
 	except KeyError:
-		raise Key('We dont have audioFile for {}'.format(word_index))
+		raise ('We dont have audioFile for {}'.format(word_index))
 
 	options = utils.tokenize_word(word_index, n=1)
 	random.shuffle(options)
@@ -174,7 +171,7 @@ def generate_exam(user_id):
 		elif task == 3:
 			exams.append(generate_sentence_task(word_index, bag_of_words))
 		elif task == 4:
-			exam.append(generate_puzzle_task(word_index))
+			exams.append(generate_puzzle_task(word_index))
 		elif task == 5:
 			exams.append(generate_practice_task(word_index))
 	return exams

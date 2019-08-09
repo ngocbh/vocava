@@ -13,9 +13,8 @@ import json
 def get_dictionary():
 	words = Dictionary.objects()
 	dictionary = [word.to_dict() for word in words]
+	print(dictionary)
 	return jsonify(dictionary)
-
-
 
 @app.route('/api/get-oxford-result', methods=['GET', 'POST'])
 def get_oxford_result():

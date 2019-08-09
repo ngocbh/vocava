@@ -1,7 +1,7 @@
 import os, sys, argparse, subprocess, signal
 
 # Project defaults
-FLASK_APP = 'server/__init__.py'
+FLASK_APP='server/__init__.py'
 DEFAULT_IP = '0.0.0.0:3000'
 
 class Command:
@@ -48,7 +48,7 @@ cm = CommandManager()
 cm.add(Command(
 	"build",
 	"compiles python files in project into .pyc binaries",
-	lambda c: 'python3 -m compileall .'))
+	lambda c: 'python -m compileall .'))
 
 cm.add(Command(
 	"start",
@@ -62,7 +62,7 @@ cm.add(Command(
 cm.add(Command(
 	"run",
 	"runs dev server using Flask's native debugger & backend reloader",
-	lambda c: 'python3 -m flask run --host={0} --port={1} --debugger --reload'.format(c['host'], c['port']),
+	lambda c: 'python -m flask run --host={0} --port={1} --debugger --reload'.format(c['host'], c['port']),
 	{
 		'FLASK_APP': FLASK_APP,
 		'FLASK_DEBUG': 'true'
@@ -71,7 +71,7 @@ cm.add(Command(
 cm.add(Command(
 	"livereload",
 	"runs dev server using livereload for dynamic webpage reloading",
-	lambda c: 'python3 -m flask run',
+	lambda c: 'python -m flask run',
 	{
 		'FLASK_APP': FLASK_APP,
 		'FLASK_LIVE_RELOAD': 'true',
@@ -80,7 +80,7 @@ cm.add(Command(
 cm.add(Command(
 	"debug",
 	"runs dev server in debug mode; use with an IDE's remote debugger",
-	lambda c: 'python3 -m flask run --host={0} --port={1} --no-debugger --no-reload'.format(c['host'], c['port']),
+	lambda c: 'python -m flask run --host={0} --port={1} --no-debugger --no-reload'.format(c['host'], c['port']),
 	{
 		'FLASK_APP': FLASK_APP,
 		'FLASK_DEBUG': 'true'

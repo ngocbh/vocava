@@ -10,10 +10,10 @@ import random
 import re
 
 def build_bag_of_words(target_word, level, bag_of_words=[]):
-	if len(bag_of_words) > 3:
-		return random.sample(bag_of_words, k=3)
-
 	bag_of_words = set(bag_of_words)
+	if len(bag_of_words) > 3:
+		return random.sample(list(bag_of_words), k=3)
+
 	words = []
 	for word in Dictionary.objects(level=level):
 		words.append(word)

@@ -1,6 +1,16 @@
 Flask==0.11.1
+requests
+request
 gunicorn==19.7.1
 prometheus_client
 livereload==2.5.1
 nltk
 mongoengine
+
+#for ocr
+pytesseract
+pyspellchecker
+fitz
+docx
+python-docx
+PyMuPDF

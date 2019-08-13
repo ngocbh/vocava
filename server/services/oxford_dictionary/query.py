@@ -1,7 +1,7 @@
 import requests
 import json
-OXFORD_APP_ID = "b90dd935"
-OXFORD_APP_KEY = "31e115c68c5616004aa4ee2fbf7bddfa"
+OXFORD_APP_ID = "23dccc7d"
+OXFORD_APP_KEY = "e3ac66b3e5c020a39e0acab4d821095d"
 OXFORD_API_URL = "https://od-api.oxforddictionaries.com:443/api/v2/entries/"
 
 def get_pronunciations(pronunciations):

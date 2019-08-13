@@ -42,7 +42,7 @@ class ScanText:
 
         st = time.time()
         json_text = {}
-
+        # pytesseract.pytesseract.tesseract_cmd = 'pytesseract'
         if check_file(path) == 0:
             print("[INFO] File Image")
             img = cv2.imread(path)
@@ -74,7 +74,7 @@ class ScanText:
                     json_text[word] = []
                     json_text[word].append((x, y, w, h))
             cv2.imwrite('Text_output___.jpg', img)
-            print(json_text)
+            # print(json_text)
             return json.dumps(json_text)
 
         if check_file(path) == 1:

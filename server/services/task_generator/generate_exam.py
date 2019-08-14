@@ -158,6 +158,7 @@ def generate_practice_task(word_index):
 def generate_exam(user_id):
 	exams = []
 	user = User.objects().get(index=int(user_id))
+
 	wordwps = choose_tasks(user)
 
 	for i in range(len(wordwps)):

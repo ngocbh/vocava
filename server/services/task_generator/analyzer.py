@@ -3,6 +3,7 @@ from __future__ import absolute_import
 from server.databases.mongo_models import *
 from server.utils.parameters import *
 from server.utils.parameters import *
+import random
 
 def choose_task4word(ma_score):
 	if ma_score < 10:
@@ -54,7 +55,23 @@ def choose_new_words(user, size):
 	return rets
 
 def shuffle(wordwps):
-	pass
+	rets = []
+	for wordwp, task in wordwps:
+		left = -1
+		for i in range(len(rets) - 1, -1, -1):
+			if rets[i][0].word == wordwp.word:
+				left = i
+				break
+		if left == -1:
+			left = 0
+			right = int(len(rets) / 2)
+		else:
+			right = len(rets)
+			left = min(right, left + 2)
+		random_idx = random.randint(left, right)
+		rets.insert(random_idx, ((wordwp, task)))
+
+	return rets
 
 def choose_tasks(user):
 	wordwps = []
@@ -66,8 +83,11 @@ def choose_tasks(user):
 		user.new_words_per_exam + int(free_learning_size/2))
 
 	wordwps.extend(choose_new_words(user, num_newword))
-
-	# shuffle(wordwps)
+	
+	# print("------shuffe-----")
+	wordwps = shuffle(wordwps)
+	# for wordwp, task in wordwps:
+	# 	print(wordwp.word, task)
 	return wordwps
 
 

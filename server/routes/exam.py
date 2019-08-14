@@ -15,6 +15,7 @@ def create_new_exam():
 	if user_id == None:
 		return 'user-id?????', 404
 	exams = tg.generate_exam(user_id)
+	print(exams)
 	return jsonify(exams)
 
 

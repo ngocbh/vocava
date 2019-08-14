@@ -11,14 +11,15 @@ import re
 
 def build_bag_of_words(target_word, level, bag_of_words=[]):
 	bag_of_words = set(bag_of_words)
-	if len(bag_of_words) > 3:
-		return random.sample(list(bag_of_words), k=3)
+	# if len(bag_of_words) > 3:
+	# 	return random.sample(list(bag_of_words), k=3)
 
 	words = []
 	for word in Dictionary.objects(level=level):
-		words.append(word)
-		if len(words) > 100:
-			break
+		if word.index != target_word:
+			words.append(word)
+			if len(words) > 100:
+				break
 
 	while len(bag_of_words) < 3:
 		i = random.randint(0,len(words)-1)
@@ -27,6 +28,7 @@ def build_bag_of_words(target_word, level, bag_of_words=[]):
 
 	return list(bag_of_words)
 
+# def filter_ocr_text(list_text):
 
 
 def generate_definition(word_index):
@@ -157,22 +159,19 @@ def generate_exam(user_id):
 	exams = []
 	user = User.objects().get(index=int(user_id))
 	wordwps = choose_tasks(user)
-	bag_of_words = [wordwps[i][0].word for i in range(len(wordwps))]
+
 	for i in range(len(wordwps)):
 		wordwp = wordwps[i][0]
 		word_index = wordwp.word
 		task = wordwps[i][1]
-		if task == 0:
-			exams.append(generate_definition(word_index))
-		elif task == 1:
-			exams.append(generate_definition_task(word_index, bag_of_words))
+		if task == 1:
+			exams.append(generate_definition_task(word_index))
 		elif task == 2:
-			exams.append(generate_pronunciation_task(word_index, bag_of_words))
+			exams.append(generate_pronunciation_task(word_index))
 		elif task == 3:
-			exams.append(generate_sentence_task(word_index, bag_of_words))
+			exams.append(generate_sentence_task(word_index))
 		elif task == 4:
 			exams.append(generate_puzzle_task(word_index))
-		elif task == 5:
-			exams.append(generate_practice_task(word_index))
+		
 	return exams
 	

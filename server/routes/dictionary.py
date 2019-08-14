@@ -23,4 +23,19 @@ def get_oxford_result():
 	"""
 	word = request.args.get('word')
 	word_info = od.get_word_info(word)
+	user_id = request.args.get('user-id')
+	if user_id == None:
+		user_id = 1
+	try:
+		user = User.objects().get(index=int(user_id))
+		for i in range(len(user.learning_words)):
+			if user.learning_words[i].word == word:
+				user.learning_words[i].num_search += 1
+		for i in range(len(user.unknown_words)):
+			if user.unknown_words[i].word == word:
+				user.unknown_words[i].num_search += 1
+		user.save()
+	except Exception:
+		return 'Doesnot match any user id from database', 404
+	
 	return jsonify(word_info)

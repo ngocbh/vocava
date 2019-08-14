@@ -85,6 +85,7 @@ class User(Document):
 	properties = DictField()
 	# topics which user usually read
 	topics = DictField()
+	sentences = ListField()
 
 	def init_level(self, words):
 		for i in range(len(words)):
@@ -112,6 +113,7 @@ class User(Document):
 		ret['learning_words_per_exam'] = self.learning_words_per_exam
 		ret['properties'] = self.properties
 		ret['topics'] = self.topics
+		ret['sentence']  = [sen for sen in self.sentences]
 		return ret
 
 

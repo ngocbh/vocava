@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="eec167c3-6c2b-4924-8d0e-32b0288ce756" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/databases/mongo_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/databases/mongo_models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/ocr.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/ocr.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/services/ocr_image/ocr_v1.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/services/ocr_image/ocr_v1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/upload/example_01.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/upload/example_01.jpg" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,7 +13,7 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/vocava$manage.coverage" NAME="manage Coverage Results" MODIFIED="1565194193896" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/vocava$ocr_v1.coverage" NAME="ocr_v1 Coverage Results" MODIFIED="1565762078198" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/server/services/ocr_image" />
+    <SUITE FILE_PATH="coverage/vocava$ocr_v1.coverage" NAME="ocr_v1 Coverage Results" MODIFIED="1565786481759" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/server/services/ocr_image" />
     <SUITE FILE_PATH="coverage/vocava$__init__.coverage" NAME="__init__ Coverage Results" MODIFIED="1565761997685" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/server/services/ocr_image" />
   </component>
   <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
@@ -27,10 +24,31 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/services/ocr_image/ocr_v1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="571">
-              <caret line="145" column="40" selection-start-line="145" selection-start-column="40" selection-end-line="145" selection-end-column="40" />
+            <state relative-caret-position="101">
+              <caret line="136" column="39" lean-forward="true" selection-start-line="136" selection-start-column="39" selection-end-line="136" selection-end-column="39" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/services/ocr_image/most-common-verbs-english.csv">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="806" column="44" lean-forward="true" selection-start-line="806" selection-start-column="44" selection-end-line="806" selection-end-column="44" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/services/task_generator/generate_exam.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3078">
+              <caret line="162" selection-start-line="162" selection-end-line="163" />
+              <folding>
+                <element signature="e#0#38#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -82,15 +100,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/services/ocr_image/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/routes/exam.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1083">
@@ -107,18 +116,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="494">
               <caret line="28" column="22" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
-              <folding>
-                <element signature="e#0#38#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/services/task_generator/analyzer.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-434">
-              <caret line="40" column="35" selection-start-line="40" selection-start-column="35" selection-end-line="40" selection-end-column="35" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -152,6 +149,8 @@
       <find>choose_learning_words</find>
       <find>choose_3task4word</find>
       <find>lemma</find>
+      <find>have</find>
+      <find>,,</find>
     </findStrings>
     <replaceStrings>
       <replace>python</replace>
@@ -173,11 +172,12 @@
         <option value="$PROJECT_DIR$/server/services/task_generator/analyzer.py" />
         <option value="$PROJECT_DIR$/server/databases/mongo_models.py" />
         <option value="$PROJECT_DIR$/server/routes/ocr.py" />
+        <option value="$PROJECT_DIR$/server/services/ocr_image/most-common-verbs-english.csv" />
         <option value="$PROJECT_DIR$/server/services/ocr_image/ocr_v1.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-10" />
     <option name="y" value="-10" />
     <option name="width" value="745" />
@@ -198,30 +198,7 @@
             <path>
               <item name="vocava" type="b2602c69:ProjectViewProjectNode" />
               <item name="vocava" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vocava" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vocava" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vocava" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vocava" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vocava" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vocava" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-              <item name="databases" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vocava" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vocava" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="vocava" type="b2602c69:ProjectViewProjectNode" />
@@ -242,28 +219,6 @@
               <item name="server" type="462c0819:PsiDirectoryNode" />
               <item name="services" type="462c0819:PsiDirectoryNode" />
               <item name="oxford_dictionary" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vocava" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vocava" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
-              <item name="task_generator" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vocava" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vocava" type="462c0819:PsiDirectoryNode" />
-              <item name="server.egg-info" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vocava" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vocava" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vocava" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vocava" type="462c0819:PsiDirectoryNode" />
-              <item name="upload" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="vocava" type="b2602c69:ProjectViewProjectNode" />
@@ -474,12 +429,12 @@
       <workItem from="1565623055431" duration="599000" />
       <workItem from="1565657723577" duration="261000" />
       <workItem from="1565666236493" duration="88000" />
-      <workItem from="1565743962132" duration="24508000" />
+      <workItem from="1565743962132" duration="29802000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52367000" />
+    <option name="totallyTimeSpent" value="57661000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -494,12 +449,12 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.147651" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21073826" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.24220963" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.24220963" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -638,16 +593,6 @@
         <state>
           <folding>
             <element signature="e#0#22#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/services/task_generator/generate_exam.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="162" selection-start-line="162" selection-end-line="163" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -835,10 +780,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/server/services/task_generator/generate_exam.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3078">
+          <caret line="162" selection-start-line="162" selection-end-line="163" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/services/ocr_image/most-common-verbs-english.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="806" column="44" lean-forward="true" selection-start-line="806" selection-start-column="44" selection-end-line="806" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/server/services/ocr_image/ocr_v1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="571">
-          <caret line="145" column="40" selection-start-line="145" selection-start-column="40" selection-end-line="145" selection-end-column="40" />
+        <state relative-caret-position="101">
+          <caret line="136" column="39" lean-forward="true" selection-start-line="136" selection-start-column="39" selection-end-line="136" selection-end-column="39" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>

@@ -6,7 +6,12 @@ import threading
 import random
 from spellchecker import SpellChecker
 from PIL import Image
-from nltk.stem import WordNetLemmatizer
+from nltk.stem import WordNetLemmatizer, SnowballStemmer
+import csv
+
+# lemmatizer = WordNetLemmatizer()
+# print(lemmatizer.lemmatize("spoken"))
+
 import re
 from .utils import *
 from ...databases.mongo_models import *
@@ -17,6 +22,16 @@ class ScanText:
         self.limit_shape = 0
         self.lemmatizer = WordNetLemmatizer()
         self.preprocess = preprocess
+        self.dic_irregular_verb = dict()
+
+        with open('server/services/ocr_image/most-common-verbs-english.csv') as csv_file:
+            csv_reader = csv.reader(csv_file, delimiter=',')
+            for row in csv_reader:
+                for idx in range(1, len(row), 1):
+                    if (len(row[idx]) < 2) or (not row[idx][0].isalpha()):
+                        continue
+                    self.dic_irregular_verb[row[idx]] = row[0]
+
         # find those words that may be misspelled
 
     def process_word(self, word):
@@ -43,6 +58,8 @@ class ScanText:
             word = ""
         else:
             word = self.lemmatizer.lemmatize(word)
+            if word in self.dic_irregular_verb.keys():
+                word = self.dic_irregular_verb[word]
         return word
 
     def get_text(self, path):
@@ -113,13 +130,12 @@ class ScanText:
         return text
 
     def save_sentence_to_dtb(self, path):
-        parag = pytesseract.image_to_string(Image.open(path))
+        parag = pytesseract.image_to_string(Image.open(path), lang="eng")
         parag = parag.replace('’', '')
         parag = parag.replace('”', '')
         parag = parag.replace('\'', '')
         parag = parag.replace('\"', '')
         # re.split('; |, ', str)
-        print(parag)
         sentences_1 = [sentence for sentence in parag.split('.') if sentence.strip() != '']
         sentences_2 = []
         for sentence1 in sentences_1:
@@ -141,7 +157,6 @@ class ScanText:
 
             if len(sentence.split(' ')) > 10:
                 user.sentences.append(sentence)
-            print(idx, sentence)
         user.save()
         print("Finish update User.sentences")
 

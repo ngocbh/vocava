@@ -113,7 +113,7 @@ class ScanText:
         return text
 
     def save_sentence_to_dtb(self, path):
-        parag = pytesseract.image_to_string(Image.open(path))
+        parag = pytesseract.image_to_string(Image.open(path), lang='eng')
         parag = parag.replace('’', '')
         parag = parag.replace('”', '')
         parag = parag.replace('\'', '')

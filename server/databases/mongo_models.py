@@ -95,6 +95,7 @@ class User(Document):
 			elif word.level == self.level:
 				if len(self.unknown_words) < self.size_unknown_words:
 					self.unknown_words.append(WordWrapper(word=word.index, ma_score=0, num_search=0, priority=0))
+	
 
 	def to_dict(self):
 		ret = {}
@@ -113,7 +114,7 @@ class User(Document):
 		ret['learning_words_per_exam'] = self.learning_words_per_exam
 		ret['properties'] = self.properties
 		ret['topics'] = self.topics
-		ret['sentence']  = [sen for sen in self.sentences]
+		ret['sentences']  = [sen for sen in self.sentences]
 		return ret
 
 

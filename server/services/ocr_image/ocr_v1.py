@@ -4,17 +4,20 @@ import pytesseract
 import time
 import random
 from spellchecker import SpellChecker
-from .utils import *
 from PIL import Image
+from nltk.stem import WordNetLemmatizer
+
+from .utils import *
 
 class ScanText:
     def __init__(self):
         self.spell = SpellChecker()
         self.limit_shape = 0
+        self.lemmatizer = WordNetLemmatizer()
         # find those words that may be misspelled
 
     def process_word(self, word):
-        rmv_char = '0123456789“”~@#$%^&*()_+{}:"?><,./;\'[]\"=`\n'
+        rmv_char = '’‘0123456789“”~@#$%^&*()_+{}:"?><,.!/;\'[]\"=`\n'
         word = word.strip()
         word = word.lower()
 
@@ -29,17 +32,20 @@ class ScanText:
         # if self.spell._word_frequency[word] < 1:
         #     misspelled = self.spell.unknown([word])
         #     if word in misspelled:
-        #         # print("Wrong : " , word)
+            #         # print("Wrong : " , word)
         #         word = self.spell.correction(word)
         #         # print("Fix to : ", word)
 
         if self.spell._word_frequency[word] < 5:
             word = ""
+        else:
+            word = self.lemmatizer.lemmatize(word)
         return word
 
     def get_text(self, path):
         raw_text = ''
 
+        print(self.get_paragraph(path))
         st = time.time()
         json_text = {}
         # pytesseract.pytesseract.tesseract_cmd = 'pytesseract'
@@ -60,20 +66,20 @@ class ScanText:
                 if word == '':
                     continue
                 (x, y, w, h) = (d['left'][i], d['top'][i], d['width'][i], d['height'][i])
-                cv2.rectangle(img, (x, y), (x + w, y + h), (random.randint(0, 150), random.randint(0, 50), random.randint(0, 100)), 2)
-                cv2.putText(img, word,
-                            (x + 8, y + h),
-                            cv2.FONT_HERSHEY_SIMPLEX,
-                            0.7,
-                            (255, 0, 0),
-                            1)
+                # cv2.rectangle(img, (x, y), (x + w, y + h), (random.randint(0, 150), random.randint(0, 50), random.randint(0, 100)), 2)
+                # cv2.putText(img, word,
+                #             (x + 8, y + h),
+                #             cv2.FONT_HERSHEY_SIMPLEX,
+                #             0.7,
+                #             (255, 0, 0),
+                #             1)
 
                 if word in json_text:
                     json_text[word].append((x, y, w, h))
                 else:
                     json_text[word] = []
                     json_text[word].append((x, y, w, h))
-            cv2.imwrite('Text_output___.jpg', img)
+            # cv2.imwrite('Text_output___.jpg', img)
             # print(json_text)
             return json.dumps(json_text)
 

@@ -47,11 +47,17 @@ def choose_learning_words(user, size):
 def choose_new_words(user, size):
 	rets = []
 	user.unknown_words.sort(key=lambda wordwp: -wordwp.priority-wordwp.num_search)
-	for i in range(min(size, len(user.unknown_words))):
-		wordwp = user.unknown_words[i]
+	cnt = 0
+	while cnt < min(size, len(user.unknown_words)):
+		wordwp = user.unknown_words[0]
 		tasks = choose_3task4word(wordwp.ma_score)
 		for task in tasks:
 			rets.append((wordwp,task))
+		# move wordwp from unknown_words to learning_words
+		user.learning_words.append(wordwp)
+		user.unknown_words.pop(0)
+		cnt += 1
+	user.save()
 	return rets
 
 def shuffle(wordwps):
@@ -86,8 +92,8 @@ def choose_tasks(user):
 	
 	# print("------shuffe-----")
 	wordwps = shuffle(wordwps)
-	# for wordwp, task in wordwps:
-	# 	print(wordwp.word, task)
+	for wordwp, task in wordwps:
+		print(wordwp.word, task)
 	return wordwps
 
 

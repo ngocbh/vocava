@@ -2,8 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eec167c3-6c2b-4924-8d0e-32b0288ce756" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/server/assets/level.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/assets/tmp.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/IMG_20190813_215424.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/IMG_20190814_094759.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/IMG_20190814_173247.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/IMG_20190814_173518.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/IMG_20190814_175949.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/IMG_20190814_180115.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/IMG_20190814_180303.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/IMG_20190814_180346.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload/IMG_20190814_180535.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Text_output___.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Text_output___.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/databases/mongo_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/databases/mongo_models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/dictionary.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/dictionary.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/exam.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/exam.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/user_interaction.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/user_interaction.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/services/ocr_image/ocr_v1.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/services/ocr_image/ocr_v1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/services/task_generator/analyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/services/task_generator/analyzer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/services/task_generator/generate_exam.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/services/task_generator/generate_exam.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,8 +45,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/services/ocr_image/ocr_v1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="101">
-              <caret line="136" column="39" lean-forward="true" selection-start-line="136" selection-start-column="39" selection-end-line="136" selection-end-column="39" />
+            <state relative-caret-position="261">
+              <caret line="133" column="38" lean-forward="true" selection-start-line="133" selection-start-column="38" selection-end-line="133" selection-end-column="38" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -37,7 +58,7 @@
         <entry file="file://$PROJECT_DIR$/server/services/ocr_image/most-common-verbs-english.csv">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="252">
-              <caret line="806" column="44" lean-forward="true" selection-start-line="806" selection-start-column="44" selection-end-line="806" selection-end-column="44" />
+              <caret line="806" column="44" selection-start-line="806" selection-start-column="44" selection-end-line="806" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -45,8 +66,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/services/task_generator/generate_exam.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3078">
-              <caret line="162" selection-start-line="162" selection-end-line="163" />
+            <state relative-caret-position="3116">
+              <caret line="164" selection-start-line="164" selection-end-line="164" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -103,7 +124,7 @@
         <entry file="file://$PROJECT_DIR$/server/routes/exam.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1083">
-              <caret line="60" column="60" selection-start-line="60" selection-start-column="60" selection-end-line="60" selection-end-column="60" />
+              <caret line="61" column="60" selection-start-line="61" selection-start-column="60" selection-end-line="61" selection-end-column="60" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -429,12 +450,12 @@
       <workItem from="1565623055431" duration="599000" />
       <workItem from="1565657723577" duration="261000" />
       <workItem from="1565666236493" duration="88000" />
-      <workItem from="1565743962132" duration="29802000" />
+      <workItem from="1565743962132" duration="29933000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57661000" />
+    <option name="totallyTimeSpent" value="57792000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -719,7 +740,7 @@
     <entry file="file://$PROJECT_DIR$/server/routes/exam.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1083">
-          <caret line="60" column="60" selection-start-line="60" selection-start-column="60" selection-end-line="60" selection-end-column="60" />
+          <caret line="61" column="60" selection-start-line="61" selection-start-column="60" selection-end-line="61" selection-end-column="60" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
@@ -782,8 +803,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server/services/task_generator/generate_exam.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3078">
-          <caret line="162" selection-start-line="162" selection-end-line="163" />
+        <state relative-caret-position="3116">
+          <caret line="164" selection-start-line="164" selection-end-line="164" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
           </folding>
@@ -793,14 +814,14 @@
     <entry file="file://$PROJECT_DIR$/server/services/ocr_image/most-common-verbs-english.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
-          <caret line="806" column="44" lean-forward="true" selection-start-line="806" selection-start-column="44" selection-end-line="806" selection-end-column="44" />
+          <caret line="806" column="44" selection-start-line="806" selection-start-column="44" selection-end-line="806" selection-end-column="44" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/services/ocr_image/ocr_v1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="136" column="39" lean-forward="true" selection-start-line="136" selection-start-column="39" selection-end-line="136" selection-end-column="39" />
+        <state relative-caret-position="261">
+          <caret line="133" column="38" lean-forward="true" selection-start-line="133" selection-start-column="38" selection-end-line="133" selection-end-column="38" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>

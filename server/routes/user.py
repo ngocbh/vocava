@@ -3,7 +3,7 @@ from __future__ import absolute_import
 from server import app
 from flask import request, jsonify
 from bson.json_util import dumps
-
+from mongoengine import ListField
 from ..databases.mongo_models import *
 from ..services import oxford_dictionary as od
 from ..services import task_generator as tg
@@ -25,4 +25,16 @@ def get_user_info():
 		ret = [user.to_dict() for user in users]
 		return jsonify(ret)
 
-
+@app.route('/reset-user', methods=['GET'])
+def reset_user_data():
+	user_id = request.args.get('user-id')
+	field = request.args.get('field')
+	if user_id == None:
+		user_id = 1
+	user = User.objects().get(index=int(user_id))
+	if field == 'sentence':
+		print("Clear user.sentence")
+		user.sentences = []
+	user.save()
+	return "OK"
+	

@@ -41,12 +41,14 @@ def choose_new_words(user, size):
 	user.unknown_words.sort(key=lambda wordwp: -wordwp.priority-wordwp.num_search)
 	cnt = 0
 	while cnt < min(size, len(user.unknown_words)):
+		print("CNT", cnt)
 		wordwp = user.unknown_words[0]
 		tasks = choose_3task4word(wordwp.ma_score)
 		for task in tasks:
 			rets.append((wordwp,task))
 		# move wordwp from unknown_words to learning_words
 		user.learning_words.append(wordwp)
+		print("Move", wordwp.word)
 		user.unknown_words.pop(0)
 		cnt += 1
 	user.save()
@@ -75,10 +77,14 @@ def choose_tasks(user):
 	wordwps = []
 
 	wordwps.extend(choose_learning_words(user, user.learning_words_per_exam))
+	total = 0
+	for wordwp, task in wordwps:
+		total += wordwp.ma_score
 	print(user.learning_words_per_exam, len(wordwps))
-	free_learning_size = user.learning_words_per_exam - len(wordwps)
-
-	wordwps.extend(choose_new_words(user, user.new_words_per_exam + free_learning_size))
+	if total / len(wordwps) >= 50:
+		free_learning_size = max(0, user.learning_words_per_exam - len(wordwps))
+		print(user.new_words_per_exam + free_learning_size, len(wordwps))
+		wordwps.extend(choose_new_words(user, user.new_words_per_exam + free_learning_size))
 	
 	print("------shuffe-----")
 	wordwps = shuffle(wordwps)

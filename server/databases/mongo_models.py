@@ -22,11 +22,12 @@ class Dictionary(Document):
 
 	def to_dict(self):
 		ret = {}
-		ret.update({'index': self.index})
-		ret.update({'level': self.level})
-		ret.update({'sfi': self.sfi})
-		ret.update({'wordlist': self.wordlist})
-		ret.update({'oxford_result': self.oxford_result})
+		ret['index'] = self.index
+		ret['level'] = self.level
+		ret['sfi'] = self.sfi
+		ret['wordlist'] = self.wordlist
+		ret['topics'] = self.topics
+		ret['oxford_result'] = self.oxford_result
 		return ret
 
 	def update_oxford_result(self):
@@ -58,6 +59,8 @@ class Exam(EmbeddedDocument):
 	user_id = IntField(min_value=0)
 	tasks = ListField()
 
+# class Paragraph(EmbeddedDocument):
+# 	sentences = ListField()
 class User(Document):
 	#id of user
 	index = IntField(min_value=0)
@@ -86,6 +89,8 @@ class User(Document):
 	# topics which user usually read
 	topics = DictField()
 	sentences = ListField()
+	
+	exam_score = ListField()
 
 	def init_level(self, words):
 		for i in range(len(words)):
@@ -115,6 +120,7 @@ class User(Document):
 		ret['properties'] = self.properties
 		ret['topics'] = self.topics
 		ret['sentences']  = [sen for sen in self.sentences]
+		ret['exam_score']  = [score for score in self.exam_score]
 		return ret
 
 

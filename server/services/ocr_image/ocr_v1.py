@@ -30,8 +30,7 @@ class ScanText:
                 for idx in range(1, len(row), 1):
                     if (len(row[idx]) < 2) or (not row[idx][0].isalpha()):
                         continue
-                    self.dic_irregular_verb[row[idx]] = row[0]
-
+                    self.dic_irregular_verb[row[idx]] = row[0].strip()
         # find those words that may be misspelled
 
     def process_word(self, word):
@@ -58,7 +57,7 @@ class ScanText:
             word = ""
         else:
             word = self.lemmatizer.lemmatize(word)
-            if word in self.dic_irregular_verb.keys():
+            if word in self.dic_irregular_verb:
                 word = self.dic_irregular_verb[word]
         return word
 

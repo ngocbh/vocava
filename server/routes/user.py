@@ -7,7 +7,6 @@ from mongoengine import ListField
 from ..databases.mongo_models import *
 from ..services import oxford_dictionary as od
 from ..services import task_generator as tg
-
 import json
 
 @app.route('/user-info', methods=['GET'])
@@ -32,9 +31,27 @@ def reset_user_data():
 	if user_id == None:
 		user_id = 1
 	user = User.objects().get(index=int(user_id))
-	if field == 'sentence':
+	if field == 'sentences':
 		print("Clear user.sentence")
 		user.sentences = []
+	elif field == 'exam_score':
+		print("Clear user.exam_score")
+		user.exam_score = []
+	
 	user.save()
 	return "OK"
+
+@app.route('/statistic', methods=['GET'])
+def statistic():
+	user_id = request.args.get('user-id')
+	if user_id == None:
+		user_id = 1
+	user = User.objects().get(index=int(user_id))
+	result = {}
+	quantity = {1: 0, 2: 0, 3: 0, 4: 0}
+	for wordwp in user.learning_words:
+		quantity[tg.analyzer.choose_task4word(wordwp.ma_score)] += 1
+	result['quantity'] = quantity
+	result['exam_score'] = [score for score in user.exam_score]
+	return jsonify(result)
 	

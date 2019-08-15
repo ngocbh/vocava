@@ -17,8 +17,12 @@ def update_exam_result():
 	if(request.is_json):
 		results = request.get_json()
 		user_id = request.args.get('user-id')
+		if user_id is None:
+			user_id = 1
 		user = User.objects().get(index=int(user_id))
 		rets = []
+		num_right_answer = 0
+		num_question = 0
 		for result in results:
 			word = result['word']
 			answer = result['answer']
@@ -29,6 +33,8 @@ def update_exam_result():
 					score -= 10
 				else:
 					score += 10
+					num_right_answer += 1
+				num_question += 1
 			for i in range(len(user.learning_words)):
 				if user.learning_words[i].word == word:
 					ma_score = user.learning_words[i].ma_score
@@ -36,7 +42,8 @@ def update_exam_result():
 					user.learning_words[i].ma_score = new_ma_score
 					rets.append({'word': word, 'old_ma_score': ma_score, 'new_ma_score': new_ma_score})
 					break
-		
+		right_per = 100 * num_right_answer / num_question
+		user.exam_score.append(right_per)
 		# total_score = 0
 		# dictionary = Dictionary.objects()
 		# for wordwp in user.learning_words:

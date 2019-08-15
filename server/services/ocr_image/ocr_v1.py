@@ -6,12 +6,7 @@ import threading
 import random
 from spellchecker import SpellChecker
 from PIL import Image
-from nltk.stem import WordNetLemmatizer, SnowballStemmer
-import csv
-
-# lemmatizer = WordNetLemmatizer()
-# print(lemmatizer.lemmatize("spoken"))
-
+from nltk.stem import WordNetLemmatizer
 import re
 from .utils import *
 from ...databases.mongo_models import *
@@ -22,16 +17,6 @@ class ScanText:
         self.limit_shape = 0
         self.lemmatizer = WordNetLemmatizer()
         self.preprocess = preprocess
-        self.dic_irregular_verb = dict()
-
-        with open('server/services/ocr_image/most-common-verbs-english.csv') as csv_file:
-            csv_reader = csv.reader(csv_file, delimiter=',')
-            for row in csv_reader:
-                for idx in range(1, len(row), 1):
-                    if (len(row[idx]) < 2) or (not row[idx][0].isalpha()):
-                        continue
-                    self.dic_irregular_verb[row[idx]] = row[0]
-
         # find those words that may be misspelled
 
     def process_word(self, word):
@@ -58,8 +43,6 @@ class ScanText:
             word = ""
         else:
             word = self.lemmatizer.lemmatize(word)
-            if word in self.dic_irregular_verb.keys():
-                word = self.dic_irregular_verb[word]
         return word
 
     def get_text(self, path):
@@ -100,15 +83,19 @@ class ScanText:
                 #             1)
 
                 if word in json_text:
-                    json_text[word].append((x, y, w, h))
+                    json_text[word]['pos'].append((x, y, w, h))
                 else:
-                    json_text[word] = []
-                    json_text[word].append((x, y, w, h))
+                    json_text[word] = {'show': True, 'pos': []}
+                    json_text[word]['pos'].append((x, y, w, h))
             # cv2.imwrite('Text_output___.jpg', img)
             # print(json_text)
             parag_analyse = threading.Thread(target=self.save_sentence_to_dtb, args=(path,), name="Thread-a", daemon=True)
             parag_analyse.start()
-
+            
+            print("Number of word in image:", len(json_text))
+            json_text = self.filter_ocr_text(json_text)
+            # print("Number of word in image after filter:", len(json_text))
+            # print(json.dumps(json_text))
             return json.dumps(json_text)
 
         if check_file(path) == 1:
@@ -125,6 +112,23 @@ class ScanText:
         print("Process in {}s".format(time.time() - st))
         return raw_text
 
+    def filter_ocr_text(self, json_text):
+        user = User.objects().get(index=1)
+        for word in list(json_text):
+            for wordwp in user.learning_words:
+                if word == wordwp.word:
+                    json_text[word]['show'] = False
+                    continue
+            try:
+                word_in_dict = Dictionary.objects().get(index=word)
+                # print("-----")
+                if word_in_dict is not None and abs(word_in_dict.level - user.level) > 1:
+                    json_text[word]['show'] = False
+            except:
+                json_text[word]['show'] = False
+                pass
+        return json_text
+
     def get_paragraph(self, path):
         text = pytesseract.image_to_string(Image.open(path))
         return text
@@ -136,6 +140,7 @@ class ScanText:
         parag = parag.replace('\'', '')
         parag = parag.replace('\"', '')
         # re.split('; |, ', str)
+        print(parag)
         sentences_1 = [sentence for sentence in parag.split('.') if sentence.strip() != '']
         sentences_2 = []
         for sentence1 in sentences_1:
@@ -157,6 +162,12 @@ class ScanText:
 
             if len(sentence.split(' ')) > 10:
                 user.sentences.append(sentence)
+            print(idx, sentence)
+        # para_topic = "xxx"
+        # cnt_topic = user.topics[para_topic]
+        # if cnt_topic is None:
+        #     user.topics[para_topic] = 0
+        # user.topics[para_topic] += 1
         user.save()
         print("Finish update User.sentences")
 

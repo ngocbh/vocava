@@ -77,10 +77,14 @@ def choose_tasks(user):
 	wordwps = []
 
 	wordwps.extend(choose_learning_words(user, user.learning_words_per_exam))
+	total = 0
+	for wordwp, task in wordwps:
+		total += wordwp.ma_score
 	print(user.learning_words_per_exam, len(wordwps))
-	free_learning_size = max(0, user.learning_words_per_exam - len(wordwps))
-	print(user.new_words_per_exam + free_learning_size, len(wordwps))
-	wordwps.extend(choose_new_words(user, user.new_words_per_exam + free_learning_size))
+	if total / len(wordwps) >= 50:
+		free_learning_size = max(0, user.learning_words_per_exam - len(wordwps))
+		print(user.new_words_per_exam + free_learning_size, len(wordwps))
+		wordwps.extend(choose_new_words(user, user.new_words_per_exam + free_learning_size))
 	
 	print("------shuffe-----")
 	wordwps = shuffle(wordwps)
